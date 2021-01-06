@@ -3,6 +3,7 @@
 echo "-------------------------------"
 echo "      SETTING DEFAULT PWD      "
 echo "-------------------------------"
+
 if [ -z ${DEFAULT_ROOT_PWD} ]; then
     echo "DEFAULT_ROOT_PWD argument not provided, setting root password to 'password'";
 else
