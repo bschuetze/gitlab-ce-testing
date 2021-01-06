@@ -4,11 +4,6 @@ echo "-------------------------------"
 echo "      RUNNING PAT PATCHER      "
 echo "-------------------------------"
 
-PAT_FILE=/CUSTOMS/default_pat.rb
-if [ ! -f "$PAT_FILE" ]; then
-    cp /templates/pat_runner.sh /CUSTOMS/pat_runner.sh
-fi
-
 if [ -z ${DEFAULT_ROOT_TOKEN} ]; then
     echo "DEFAULT_ROOT_TOKEN argument not provided, setting root access token to '9foA-QKCMgxSxf2iZZ2W'";
 else
