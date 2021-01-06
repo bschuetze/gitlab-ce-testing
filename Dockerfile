@@ -18,6 +18,9 @@ RUN chmod +x /templates/file_check.sh
 RUN chmod +x /templates/pwd_patcher.sh
 RUN chmod +x /templates/pat_runner.sh
 
+# Add switch
+RUN echo -n "0" > /pat_check
+
 # Add patchers to the existing wrapper
 RUN sed 's/echo "Configuring GitLab..."/source \/CUSTOMS\/pwd_patcher.sh\n\necho "Configuring GitLab..."/g' -i /assets/wrapper
 RUN sed 's/gitlab-ctl reconfigure/gitlab-ctl reconfigure\n\nsource \/CUSTOMS\/pat_runner.sh/g' -i /assets/wrapper

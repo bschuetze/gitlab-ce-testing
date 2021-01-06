@@ -4,6 +4,18 @@ echo "-------------------------------"
 echo "      RUNNING PAT PATCHER      "
 echo "-------------------------------"
 
+# Check if we have already created the PAT
+CHK_FILE="/pat_check"
+if [ -e ${CHK_FILE} ]; then
+    run_pat=$(cat ${CHK_FILE})
+else
+    run_pat="0"
+fi
+if [ "${run_pat}" -eq "1" ]; then
+    echo "PAT already created, skipping..."
+    exit;
+fi
+
 PAT_FILE="/CUSTOMS/default_pat.rb"
 
 if [ -z "${DEFAULT_ROOT_TOKEN}" ]; then
@@ -27,6 +39,8 @@ gitlab-rails r ${PAT_FILE}
 if [ $? -eq 0 ]
 then
   echo "Successfully patched in default PAT"
+  echo -n "1" > ${CHK_FILE}
 else
   echo "Could not patch PAT"
 fi
+
