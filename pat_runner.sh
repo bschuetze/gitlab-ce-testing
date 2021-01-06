@@ -4,16 +4,11 @@ echo "-------------------------------"
 echo "      RUNNING PAT PATCHER      "
 echo "-------------------------------"
 
-# Check if we have already created the PAT
-CHK_FILE="/pat_check"
-if [ -e ${CHK_FILE} ]; then
-    run_pat=$(cat ${CHK_FILE})
-else
-    run_pat="0"
-fi
+run_pat=`echo "User.find_by_username('root').personal_access_tokens.first.name" | gitlab-rails console | grep "api-token-for-testing" | wc -l`
+
 if [ "${run_pat}" -eq "1" ]; then
-    echo "PAT already created, skipping..."
-    exit;
+    echo "PAT already created, skipping...";
+    return 0;
 fi
 
 PAT_FILE="/CUSTOMS/default_pat.rb"
@@ -38,9 +33,7 @@ gitlab-rails r ${PAT_FILE}
 
 if [ $? -eq 0 ]
 then
-  echo "Successfully patched in default PAT"
-  echo -n "1" > ${CHK_FILE}
+    echo "Successfully patched in default PAT";
 else
-  echo "Could not patch PAT"
+    echo "Could not patch PAT";
 fi
-
