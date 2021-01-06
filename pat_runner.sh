@@ -6,7 +6,7 @@ echo "-------------------------------"
 
 PAT_FILE="/CUSTOMS/default_pat.rb"
 
-if [ -z ${DEFAULT_ROOT_TOKEN} ]; then
+if [ -z "${DEFAULT_ROOT_TOKEN}" ]; then
     echo "DEFAULT_ROOT_TOKEN argument not provided, setting root access token to '9foA-QKCMgxSxf2iZZ2W'";
 else
     echo "Setting default root access token to: ${DEFAULT_ROOT_TOKEN}";
@@ -14,7 +14,7 @@ fi
 
 sed -i "s/token.set_token('')/token.set_token('${DEFAULT_ROOT_TOKEN:-9foA-QKCMgxSxf2iZZ2W}')/g" ${PAT_FILE}
 
-if [ -z ${DEFAULT_ROOT_TOKEN_SCOPE} ]; then
+if [ -z "${DEFAULT_ROOT_TOKEN_SCOPE}" ]; then
     echo "DEFAULT_ROOT_TOKEN_SCOPE argument not provided, setting token scope to all ('api', 'read_user', 'read_repository', 'write_repository', 'sudo')";
 else
     echo "Setting access token scope to: ${DEFAULT_ROOT_TOKEN_SCOPE}";
