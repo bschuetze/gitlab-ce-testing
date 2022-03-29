@@ -1,4 +1,4 @@
-FROM gitlab/gitlab-ce:13.12.8-ce.0
+FROM gitlab/gitlab-ce:13.12.15-ce.0
 
 # Setup necessary locations and copy files
 RUN mkdir /CUSTOMS
